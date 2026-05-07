@@ -22,7 +22,7 @@ public class ProdutoAcessorio extends Produto{
     public void visualizar() {
         super.visualizar();
         System.out.println("Material: " + material);
-        System.out.println("*********************************************************");
+        System.out.println("****************************************************");
     }
 	
 }

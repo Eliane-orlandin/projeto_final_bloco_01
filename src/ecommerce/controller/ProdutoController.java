@@ -79,4 +79,20 @@ public class ProdutoController implements ProdutoRepository {
     public List<Produto> getListaProdutos() {
         return listaProdutos;
     }
+    
+    @Override
+    public void buscarPorCategoria(String categoria) {
+        boolean encontrado = false;
+
+        for (Produto p : listaProdutos) {
+        	if (p.getCategoria().toLowerCase().contains(categoria.toLowerCase())) {
+        	    p.visualizar();
+        	    encontrado = true;
+        	}
+        }
+
+        if (!encontrado) {
+            System.out.println("Nenhum produto encontrado na categoria: " + categoria);
+        }
+    }
 }

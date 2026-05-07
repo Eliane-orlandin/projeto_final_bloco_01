@@ -32,6 +32,7 @@ public class Menu {
 			System.out.println("            2 - Listar todos produtos                ");
 			System.out.println("            3 - Atualizar produto                    ");
 			System.out.println("            4 - Excluir produto                      ");
+			System.out.println("            5 - Buscar produtos por categoria        ");
 			System.out.println("            0 - Sair                                 ");
 			System.out.println("                                                     ");
 			System.out.println("*****************************************************");
@@ -67,6 +68,13 @@ public class Menu {
                 break;
             case 4:
                 excluirProduto();
+                break;
+            case 5:
+                System.out.println("Buscar produtos por categoria\n\n");
+                System.out.print("Digite a categoria: ");
+                String categoria = leia.nextLine();
+                listaProdutos.buscarPorCategoria(categoria);
+                keyPress();
                 break;
             default:
                 System.out.println("\nOpção Inválida!\n");

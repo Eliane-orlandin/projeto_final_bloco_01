@@ -77,12 +77,12 @@ public abstract class Produto {
 	}
 	
 	public void visualizar() {
-	    System.out.println("\n*********************************************************");
+	    System.out.println("\n****************************************************");
 	    System.out.println("ID: " + this.id);
 	    System.out.println("Nome: " + this.nome);
 	    System.out.println("Descrição: " + this.descricao);
-	    System.out.println("Preço: R$ " + this.preco);
-	    System.out.println("Categoria: " + this.categoria);
+	    System.out.printf("Preço: R$ %.2f", this.preco);
+	    System.out.println("\nCategoria: " + this.categoria);
 	    System.out.println("Tamanho: " + this.tamanho);
 	    System.out.println("Cor: " + this.cor);
 	    ;

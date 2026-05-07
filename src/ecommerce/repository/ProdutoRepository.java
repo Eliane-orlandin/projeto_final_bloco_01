@@ -13,4 +13,7 @@ public interface ProdutoRepository {
 	public void atualizar(Produto produto);
 
 	public void deletar(int id);
+	
+	public void buscarPorCategoria(String categoria);
+
 }

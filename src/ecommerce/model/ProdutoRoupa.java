@@ -22,7 +22,7 @@ public class ProdutoRoupa extends Produto{
     public void visualizar() {
         super.visualizar();
         System.out.println("Tecido: " + tecido);
-        System.out.println("*********************************************************");
+        System.out.println("****************************************************");
     }
 	
 }
