@@ -3,11 +3,43 @@ package ecommerce;
 import java.util.Scanner;
 
 import ecommerce.util.Cores;
+import ecommerce.model.ProdutoRoupa;
+import ecommerce.model.ProdutoAcessorio;
 
 public class Menu {
+	
+	private static final Scanner leia = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		Scanner leia = new Scanner(System.in);
+		
+		// Teste da Classe ProdutoRoupa
+
+		ProdutoRoupa r1 = new ProdutoRoupa(
+		    1,
+		    "Camiseta Rock Wear",
+		    "Camiseta preta 100% algodão",
+		    99.90f,
+		    "Roupas",
+		    "M",
+		    "Preto",
+		    "Algodão"
+
+		);
+		r1.visualizar();
+		
+		ProdutoAcessorio a1 = new ProdutoAcessorio(
+			    2,
+			    "Pulseira Rock",
+			    "Pulseira de couro com detalhes metálicos",
+			    49.90f,
+			    "Acessórios",
+			    "-",
+			    "Preto",
+			    "Pulseira"
+			);
+
+			a1.visualizar();
+
 
 		int opcao;
 
