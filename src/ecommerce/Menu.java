@@ -1,44 +1,20 @@
 package ecommerce;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import ecommerce.util.Cores;
 import ecommerce.model.ProdutoRoupa;
+import ecommerce.controller.ProdutoController;
+import ecommerce.model.Produto;
 import ecommerce.model.ProdutoAcessorio;
 
 public class Menu {
 	
 	private static final Scanner leia = new Scanner(System.in);
+	private static final ProdutoController listaProdutos = new ProdutoController();
 
 	public static void main(String[] args) {
-		
-		// Teste da Classe ProdutoRoupa
-
-		ProdutoRoupa r1 = new ProdutoRoupa(
-		    1,
-		    "Camiseta Rock Wear",
-		    "Camiseta preta 100% algodão",
-		    99.90f,
-		    "Roupas",
-		    "M",
-		    "Preto",
-		    "Algodão"
-
-		);
-		r1.visualizar();
-		
-		ProdutoAcessorio a1 = new ProdutoAcessorio(
-			    2,
-			    "Pulseira Rock",
-			    "Pulseira de couro com detalhes metálicos",
-			    49.90f,
-			    "Acessórios",
-			    "-",
-			    "Preto",
-			    "Pulseira"
-			);
-
-			a1.visualizar();
 
 
 		int opcao;
@@ -62,7 +38,14 @@ public class Menu {
 			System.out.println("Entre com a opção desejada:                          ");
 			System.out.println("                                                     " + Cores.TEXT_RESET);
 
-			opcao = leia.nextInt();
+			try {
+				opcao = leia.nextInt();
+				leia.nextLine();
+			} catch (InputMismatchException e) {
+				opcao = -1;
+				System.out.println("\nDigite um número inteiro!");
+				leia.nextLine();
+			}
 
 			if (opcao == 0) {
 				System.out.println("\nVista o som, sinta o rock");
@@ -73,26 +56,22 @@ public class Menu {
 
 			switch (opcao) {
 			case 1:
-				System.out.println("Cadastrar produto\n\n");
-
-				break;
-			case 2:
-				System.out.println("Listar todos produtos\n\n");
-
-				break;
-
-			case 3:
-				System.out.println("Atualizar produto\n\n");
-
-				break;
-			case 4:
-				System.out.println("Excluir produto\n\n");
-
-				break;
-
-			default:
-				System.out.println("\nOpção Inválida!\n");
-				break;
+                cadastrarProduto();
+                break;
+            case 2:
+                listaProdutos.listarTodos();
+                keyPress();
+                break;
+            case 3:
+                atualizarProduto();
+                break;
+            case 4:
+                excluirProduto();
+                break;
+            default:
+                System.out.println("\nOpção Inválida!\n");
+                keyPress();
+                break;
 			}
 		}		
 
@@ -104,5 +83,99 @@ public class Menu {
 		System.out.println("https://github.com/Eliane-orlandin/projeto_final_bloco_01");
 		System.out.println("*********************************************************");
 	}
+	public static void keyPress() {
+		System.out.println(Cores.TEXT_RESET + "\n\nPressione Enter para Continuar...");
+		leia.nextLine();
+	}
+	
+	private static void cadastrarProduto() {
+        System.out.println("\n--- Cadastrar Produto ---");
+        System.out.print("Tipo (1 - Roupa / 2 - Acessório): ");
+        int tipo = Integer.parseInt(leia.nextLine().trim());
+
+        System.out.print("Nome: ");
+        String nome = leia.nextLine();
+
+        System.out.print("Descrição: ");
+        String descricao = leia.nextLine();
+
+        System.out.print("Preço: ");
+        float preco = Float.parseFloat(leia.nextLine().trim());
+
+        System.out.print("Categoria: ");
+        String categoria = leia.nextLine();
+
+        System.out.print("Tamanho: ");
+        String tamanho = leia.nextLine();
+
+        System.out.print("Cor: ");
+        String cor = leia.nextLine();
+
+        if (tipo == 1) {
+            System.out.print("Tecido: ");
+            String tecido = leia.nextLine();
+            ProdutoRoupa roupa = new ProdutoRoupa(0, nome, descricao, preco, categoria, tamanho, cor, tecido);
+            listaProdutos.cadastrar(roupa);
+        } else {
+            System.out.print("Material: ");
+            String material = leia.nextLine();
+            ProdutoAcessorio acessorio = new ProdutoAcessorio(0, nome, descricao, preco, categoria, tamanho, cor, material);
+            listaProdutos.cadastrar(acessorio);
+        }
+        keyPress();
+    }
+
+    private static void atualizarProduto() {
+        System.out.println("\n--- Atualizar Produto ---");
+        System.out.print("Informe o ID do produto a atualizar: ");
+        int id = Integer.parseInt(leia.nextLine().trim());
+
+        System.out.println("\nProduto atual:");
+        listaProdutos.procurarPorId(id);
+
+        System.out.println("\nInforme os novos dados:");
+        System.out.print("Tipo (1 - Roupa / 2 - Acessório): ");
+        int tipo = Integer.parseInt(leia.nextLine().trim());
+
+        System.out.print("Nome: ");
+        String nome = leia.nextLine();
+
+        System.out.print("Descrição: ");
+        String descricao = leia.nextLine();
+
+        System.out.print("Preço: ");
+        float preco = Float.parseFloat(leia.nextLine().trim());
+
+        System.out.print("Categoria: ");
+        String categoria = leia.nextLine();
+
+        System.out.print("Tamanho: ");
+        String tamanho = leia.nextLine();
+
+        System.out.print("Cor: ");
+        String cor = leia.nextLine();
+
+        Produto novo;
+        if (tipo == 1) {
+            System.out.print("Tecido: ");
+            String tecido = leia.nextLine();
+            novo = new ProdutoRoupa(id, nome, descricao, preco, categoria, tamanho, cor, tecido);
+        } else {
+            System.out.print("Material: ");
+            String material = leia.nextLine();
+            novo = new ProdutoAcessorio(id, nome, descricao, preco, categoria, tamanho, cor, material);
+        }
+
+        listaProdutos.atualizar(novo);
+        keyPress();
+    }
+
+    private static void excluirProduto() {
+        System.out.println("\n--- Excluir Produto ---");
+        System.out.print("Informe o ID do produto a excluir: ");
+        int id = Integer.parseInt(leia.nextLine().trim());
+        listaProdutos.deletar(id);
+        keyPress();
+    }
 
 }
