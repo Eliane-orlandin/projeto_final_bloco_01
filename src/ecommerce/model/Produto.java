@@ -1,5 +1,8 @@
 package ecommerce.model;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public abstract class Produto {
 
 	private int id;
@@ -77,12 +80,14 @@ public abstract class Produto {
 	}
 	
 	public void visualizar() {
+		NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+		
 	    System.out.println("\n****************************************************");
 	    System.out.println("ID: " + this.id);
 	    System.out.println("Nome: " + this.nome);
 	    System.out.println("Descrição: " + this.descricao);
-	    System.out.printf("Preço: R$ %.2f", this.preco);
-	    System.out.println("\nCategoria: " + this.categoria);
+	    System.out.println("Preço: " + nf.format(this.preco));
+	    System.out.println("Categoria: " + this.categoria);
 	    System.out.println("Tamanho: " + this.tamanho);
 	    System.out.println("Cor: " + this.cor);
 	    ;
