@@ -1,0 +1,15 @@
+# Ignorar arquivos compilados
+*.class
+
+# Ignorar diretórios de build
+/bin/
+/target/
+
+# Ignorar configurações locais
+/.settings/
+/.project
+/.classpath
+
+# Ignorar arquivos de sistema
+.DS_Store
+Thumbs.db
