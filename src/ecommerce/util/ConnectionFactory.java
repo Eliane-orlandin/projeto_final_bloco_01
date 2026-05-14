@@ -10,17 +10,21 @@ import java.sql.SQLException;
  */
 public class ConnectionFactory {
 
-    // Configurações do banco de dados
-    private static final String URL = "jdbc:mysql://localhost:3306/db_rocwear"; // URL de conexão com o banco
-    private static final String USER = "root"; // Usuário do banco de dados
-    private static final String PASS = "sua_senha"; // Senha do banco (ATENÇÃO: não recomendado em produção)
+    // Configurações do banco de dados via variáveis de ambiente (mais seguro)
+    private static final String URL = System.getenv("DB_URL"); // Ex.: jdbc:mysql://localhost:3306/db_rocwear
+    private static final String USER = System.getenv("DB_USER"); // Ex.: root
+    private static final String PASS = System.getenv("DB_PASSWORD"); // Senha definida externamente
 
     /**
      * Método para obter uma conexão com o banco de dados.
      * @return Connection - Objeto de conexão JDBC
-     * @throws RuntimeException se houver erro na conexão
+     * @throws RuntimeException se houver erro na conexão ou variáveis não definidas
      */
     public static Connection getConnection() {
+        // Verifica se as variáveis de ambiente estão definidas
+        if (URL == null || USER == null || PASS == null) {
+            throw new RuntimeException("Variáveis de ambiente DB_URL, DB_USER ou DB_PASSWORD não estão definidas.");
+        }
         try {
             // Tenta estabelecer a conexão usando DriverManager
             return DriverManager.getConnection(URL, USER, PASS);
