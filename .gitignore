@@ -13,3 +13,6 @@
 # Ignorar arquivos de sistema
 .DS_Store
 Thumbs.db
+
+# Ignorar arquivo de variáveis de ambiente (segurança)
+.env
