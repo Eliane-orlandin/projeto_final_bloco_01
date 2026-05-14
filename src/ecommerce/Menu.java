@@ -1,13 +1,13 @@
 package ecommerce;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
-import ecommerce.util.Cores;
-import ecommerce.model.ProdutoRoupa;
 import ecommerce.controller.ProdutoController;
 import ecommerce.model.Produto;
 import ecommerce.model.ProdutoAcessorio;
+import ecommerce.model.ProdutoRoupa;
+import ecommerce.util.ConnectionFactory;
+import ecommerce.util.Cores;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Menu {
 	
@@ -33,6 +33,7 @@ public class Menu {
 			System.out.println("            3 - Atualizar produto                    ");
 			System.out.println("            4 - Excluir produto                      ");
 			System.out.println("            5 - Buscar produtos por categoria        ");
+			System.out.println("            6 - Testar conexão com banco             ");
 			System.out.println("            0 - Sair                                 ");
 			System.out.println("                                                     ");
 			System.out.println("*****************************************************");
@@ -76,6 +77,9 @@ public class Menu {
                 listaProdutos.buscarPorCategoria(categoria);
                 keyPress();
                 break;
+            case 6:
+                testarConexao();
+                break;
             default:
                 System.out.println("\nOpção Inválida!\n");
                 keyPress();
@@ -95,6 +99,12 @@ public class Menu {
 		System.out.println(Cores.TEXT_RESET + "\n\nPressione Enter para Continuar...");
 		leia.nextLine();
 	}
+	
+	private static void testarConexao() {
+        System.out.println("\n--- Testar Conexão com Banco de Dados ---");
+        ConnectionFactory.testConnection();
+        keyPress();
+    }
 	
 	private static void cadastrarProduto() {
         System.out.println("\n--- Cadastrar Produto ---");
