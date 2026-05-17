@@ -23,4 +23,5 @@ lib/*.jar
 # Ignorar arquivo de variáveis de ambiente (segurança)
 .env
 
+
 .instructions.md
