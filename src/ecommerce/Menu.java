@@ -120,6 +120,9 @@ public class Menu {
         System.out.print("Preço: ");
         float preco = Float.parseFloat(leia.nextLine().trim());
 
+        System.out.print("Quantidade: ");
+        int quantidade = Integer.parseInt(leia.nextLine().trim());
+
         System.out.print("Categoria: ");
         String categoria = leia.nextLine();
 
@@ -132,12 +135,12 @@ public class Menu {
         if (tipo == 1) {
             System.out.print("Tecido: ");
             String tecido = leia.nextLine();
-            ProdutoRoupa roupa = new ProdutoRoupa(0, nome, descricao, preco, categoria, tamanho, cor, tecido);
+            ProdutoRoupa roupa = new ProdutoRoupa(0, nome, descricao, preco, categoria, tamanho, cor, tecido, quantidade);
             listaProdutos.cadastrar(roupa);
         } else {
             System.out.print("Material: ");
             String material = leia.nextLine();
-            ProdutoAcessorio acessorio = new ProdutoAcessorio(0, nome, descricao, preco, categoria, tamanho, cor, material);
+            ProdutoAcessorio acessorio = new ProdutoAcessorio(0, nome, descricao, preco, categoria, tamanho, cor, material, quantidade);
             listaProdutos.cadastrar(acessorio);
         }
         keyPress();
@@ -164,6 +167,9 @@ public class Menu {
         System.out.print("Preço: ");
         float preco = Float.parseFloat(leia.nextLine().trim());
 
+        System.out.print("Quantidade: ");
+        int quantidade = Integer.parseInt(leia.nextLine().trim());
+
         System.out.print("Categoria: ");
         String categoria = leia.nextLine();
 
@@ -177,11 +183,11 @@ public class Menu {
         if (tipo == 1) {
             System.out.print("Tecido: ");
             String tecido = leia.nextLine();
-            novo = new ProdutoRoupa(id, nome, descricao, preco, categoria, tamanho, cor, tecido);
+            novo = new ProdutoRoupa(id, nome, descricao, preco, categoria, tamanho, cor, tecido, quantidade);
         } else {
             System.out.print("Material: ");
             String material = leia.nextLine();
-            novo = new ProdutoAcessorio(id, nome, descricao, preco, categoria, tamanho, cor, material);
+            novo = new ProdutoAcessorio(id, nome, descricao, preco, categoria, tamanho, cor, material, quantidade);
         }
 
         listaProdutos.atualizar(novo);

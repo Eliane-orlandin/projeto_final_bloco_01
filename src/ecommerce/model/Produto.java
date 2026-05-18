@@ -12,8 +12,13 @@ public abstract class Produto {
 	private String categoria;
 	private String tamanho;
 	private String cor;
+	private int quantidade;
 
 	public Produto(int id, String nome, String descricao, float preco, String categoria, String tamanho, String cor) {
+		this(id, nome, descricao, preco, categoria, tamanho, cor, 0);
+	}
+
+	public Produto(int id, String nome, String descricao, float preco, String categoria, String tamanho, String cor, int quantidade) {
 		this.id = id;
 		this.nome = nome;
 		this.descricao = descricao;
@@ -21,6 +26,7 @@ public abstract class Produto {
 		this.categoria = categoria;
 		this.tamanho = tamanho;
 		this.cor = cor;
+		this.quantidade = quantidade;
 	}
 
 	public int getId() {
@@ -78,6 +84,14 @@ public abstract class Produto {
 	public void setCor(String cor) {
 		this.cor = cor;
 	}
+
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
 	
 	public void visualizar() {
 		NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
@@ -90,8 +104,6 @@ public abstract class Produto {
 	    System.out.println("Categoria: " + this.categoria);
 	    System.out.println("Tamanho: " + this.tamanho);
 	    System.out.println("Cor: " + this.cor);
-	    ;
+		System.out.println("Quantidade: " + this.quantidade);
 	}
-
-
 }

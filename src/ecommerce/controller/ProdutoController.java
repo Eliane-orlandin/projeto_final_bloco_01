@@ -94,5 +94,5 @@ public class ProdutoController implements ProdutoRepository {
         if (!encontrado) {
             System.out.println("Nenhum produto encontrado na categoria: " + categoria);
         }
-    }
+    }*/
 }
