@@ -105,6 +105,25 @@ public class ProdutoRepositoryJDBC implements ProdutoRepository {
     }
 
     @Override
+    public Produto buscarPorId(int id) {
+        String sql = "SELECT * FROM produtos WHERE id = ?";
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return mapResultSetToProduto(rs);
+                }
+            }
+
+        } catch (SQLException | RuntimeException e) {
+            System.out.println("Erro ao buscar produto por ID: " + e.getMessage());
+        }
+        return null;
+    }
+
+    @Override
     public void atualizar(Produto produto) {
         String sql = "UPDATE produtos SET nome = ?, descricao = ?, preco = ?, categoria = ?, tamanho = ?, cor = ?, quantidade = ?, tipo = ?, tecido = ?, material = ? WHERE id = ?";
         try (Connection conn = ConnectionFactory.getConnection();

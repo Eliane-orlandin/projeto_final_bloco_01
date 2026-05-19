@@ -61,6 +61,16 @@ public class ProdutoController implements ProdutoRepository {
     }
 
     @Override
+    public Produto buscarPorId(int id) {
+        for (Produto p : listaProdutos) {
+            if (p.getId() == id) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public void atualizar(Produto produto) {
         if (produto == null) {
             System.out.println("Produto inválido.");

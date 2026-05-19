@@ -10,6 +10,8 @@ public interface ProdutoRepository {
 
 	public void procurarPorId(int id);
 
+	public Produto buscarPorId(int id);
+
 	public void atualizar(Produto produto);
 
 	public void deletar(int id);
