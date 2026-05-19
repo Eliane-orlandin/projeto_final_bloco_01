@@ -150,44 +150,113 @@ public class Menu {
     private static void atualizarProduto() {
         System.out.println("\n--- Atualizar Produto ---");
         System.out.print("Informe o ID do produto a atualizar: ");
-        int id = Integer.parseInt(leia.nextLine().trim());
+        String idInput = leia.nextLine().trim();
+        int id;
+        try {
+            id = Integer.parseInt(idInput);
+        } catch (NumberFormatException e) {
+            System.out.println("\nID inválido!");
+            keyPress();
+            return;
+        }
+
+        Produto produtoAtual = listaProdutos.buscarPorId(id);
+        if (produtoAtual == null) {
+            System.out.println("\nProduto com ID " + id + " não encontrado no banco de dados.");
+            keyPress();
+            return;
+        }
 
         System.out.println("\nProduto atual:");
-        listaProdutos.procurarPorId(id);
+        produtoAtual.visualizar();
 
-        System.out.println("\nInforme os novos dados:");
-        System.out.print("Tipo (1 - Roupa / 2 - Acessório): ");
-        int tipo = Integer.parseInt(leia.nextLine().trim());
+        System.out.println("\nInforme os novos dados (pressione Enter sem digitar nada para manter o valor atual):");
+        
+        int tipoAtual = (produtoAtual instanceof ProdutoRoupa) ? 1 : 2;
+        System.out.print("Tipo (1 - Roupa / 2 - Acessório) [Atual: " + (tipoAtual == 1 ? "Roupa" : "Acessório") + "]: ");
+        String tipoInput = leia.nextLine().trim();
+        int tipo = tipoAtual;
+        if (!tipoInput.isEmpty()) {
+            try {
+                tipo = Integer.parseInt(tipoInput);
+                if (tipo != 1 && tipo != 2) {
+                    System.out.println("Tipo inválido! Mantendo o tipo atual (" + (tipoAtual == 1 ? "Roupa" : "Acessório") + ").");
+                    tipo = tipoAtual;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Entrada inválida! Mantendo o tipo atual (" + (tipoAtual == 1 ? "Roupa" : "Acessório") + ").");
+                tipo = tipoAtual;
+            }
+        }
 
-        System.out.print("Nome: ");
+        System.out.print("Nome [Atual: " + produtoAtual.getNome() + "]: ");
         String nome = leia.nextLine();
+        if (nome.trim().isEmpty()) {
+            nome = produtoAtual.getNome();
+        }
 
-        System.out.print("Descrição: ");
+        System.out.print("Descrição [Atual: " + produtoAtual.getDescricao() + "]: ");
         String descricao = leia.nextLine();
+        if (descricao.trim().isEmpty()) {
+            descricao = produtoAtual.getDescricao();
+        }
 
-        System.out.print("Preço: ");
-        float preco = Float.parseFloat(leia.nextLine().trim());
+        System.out.print("Preço [Atual: " + produtoAtual.getPreco() + "]: ");
+        String precoInput = leia.nextLine().trim();
+        float preco = produtoAtual.getPreco();
+        if (!precoInput.isEmpty()) {
+            try {
+                preco = Float.parseFloat(precoInput);
+            } catch (NumberFormatException e) {
+                System.out.println("Preço inválido! Mantendo o preço atual (" + produtoAtual.getPreco() + ").");
+            }
+        }
 
-        System.out.print("Quantidade: ");
-        int quantidade = Integer.parseInt(leia.nextLine().trim());
+        System.out.print("Quantidade [Atual: " + produtoAtual.getQuantidade() + "]: ");
+        String qtdInput = leia.nextLine().trim();
+        int quantidade = produtoAtual.getQuantidade();
+        if (!qtdInput.isEmpty()) {
+            try {
+                quantidade = Integer.parseInt(qtdInput);
+            } catch (NumberFormatException e) {
+                System.out.println("Quantidade inválida! Mantendo a quantidade atual (" + produtoAtual.getQuantidade() + ").");
+            }
+        }
 
-        System.out.print("Categoria: ");
+        System.out.print("Categoria [Atual: " + produtoAtual.getCategoria() + "]: ");
         String categoria = leia.nextLine();
+        if (categoria.trim().isEmpty()) {
+            categoria = produtoAtual.getCategoria();
+        }
 
-        System.out.print("Tamanho: ");
+        System.out.print("Tamanho [Atual: " + produtoAtual.getTamanho() + "]: ");
         String tamanho = leia.nextLine();
+        if (tamanho.trim().isEmpty()) {
+            tamanho = produtoAtual.getTamanho();
+        }
 
-        System.out.print("Cor: ");
+        System.out.print("Cor [Atual: " + produtoAtual.getCor() + "]: ");
         String cor = leia.nextLine();
+        if (cor.trim().isEmpty()) {
+            cor = produtoAtual.getCor();
+        }
 
         Produto novo;
         if (tipo == 1) {
-            System.out.print("Tecido: ");
+            String tecidoAtual = (produtoAtual instanceof ProdutoRoupa) ? ((ProdutoRoupa) produtoAtual).getTecido() : "Nenhum";
+            System.out.print("Tecido [Atual: " + tecidoAtual + "]: ");
             String tecido = leia.nextLine();
+            if (tecido.trim().isEmpty()) {
+                tecido = (produtoAtual instanceof ProdutoRoupa) ? ((ProdutoRoupa) produtoAtual).getTecido() : "";
+            }
             novo = new ProdutoRoupa(id, nome, descricao, preco, categoria, tamanho, cor, tecido, quantidade);
         } else {
-            System.out.print("Material: ");
+            String materialAtual = (produtoAtual instanceof ProdutoAcessorio) ? ((ProdutoAcessorio) produtoAtual).getMaterial() : "Nenhum";
+            System.out.print("Material [Atual: " + materialAtual + "]: ");
             String material = leia.nextLine();
+            if (material.trim().isEmpty()) {
+                material = (produtoAtual instanceof ProdutoAcessorio) ? ((ProdutoAcessorio) produtoAtual).getMaterial() : "";
+            }
             novo = new ProdutoAcessorio(id, nome, descricao, preco, categoria, tamanho, cor, material, quantidade);
         }
 
