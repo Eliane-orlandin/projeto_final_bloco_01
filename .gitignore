@@ -13,3 +13,15 @@
 # Ignorar arquivos de sistema
 .DS_Store
 Thumbs.db
+
+# Ignorar configurações locais do editor
+.vscode/
+
+# Ignorar bibliotecas locais baixadas
+lib/*.jar
+
+# Ignorar arquivo de variáveis de ambiente (segurança)
+.env
+
+
+.instructions.md
