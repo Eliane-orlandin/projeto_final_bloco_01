@@ -1,6 +1,7 @@
 package ecommerce;
 
-import ecommerce.controller.ProdutoController;
+import ecommerce.repository.ProdutoRepository;
+import ecommerce.repository.ProdutoRepositoryJDBC;
 import ecommerce.model.Produto;
 import ecommerce.model.ProdutoAcessorio;
 import ecommerce.model.ProdutoRoupa;
@@ -12,7 +13,7 @@ import java.util.Scanner;
 public class Menu {
 	
 	private static final Scanner leia = new Scanner(System.in);
-	private static final ProdutoController listaProdutos = new ProdutoController();
+    private static final ProdutoRepository listaProdutos = new ProdutoRepositoryJDBC();
 
 	public static void main(String[] args) {
 
