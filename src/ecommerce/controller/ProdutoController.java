@@ -6,6 +6,16 @@ import java.util.List;
 import ecommerce.model.Produto;
 import ecommerce.repository.ProdutoRepository;
 
+/**
+ * Implementação de repositório que mantém produtos em memória.
+ *
+ * Esta classe atualmente não está sendo utilizada pelo Menu,
+ * pois o aplicativo foi alterado para usar `ProdutoRepositoryJDBC`
+ * e persistir os dados no banco de dados.
+ *
+ * Ela permanece no projeto como exemplo de armazenamento em memória
+ * e suporte a operações CRUD sem persistência externa.
+ */
 public class ProdutoController implements ProdutoRepository {
 
 	private List<Produto> listaProdutos = new ArrayList<Produto>();
@@ -94,5 +104,5 @@ public class ProdutoController implements ProdutoRepository {
         if (!encontrado) {
             System.out.println("Nenhum produto encontrado na categoria: " + categoria);
         }
-    }*/
+    }
 }
