@@ -1,4 +1,5 @@
 # 🎸 Rock Wear E-commerce
+![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-orange?style=for-the-badge)
 
 Este projeto consiste em um sistema de gerenciamento de produtos desenvolvido em **Java** para a loja de roupas e acessórios **ROCK WEAR**. O sistema opera via console (CLI), permitindo o controle completo do inventário através de operações de CRUD (Criar, Ler, Atualizar e Deletar).
 
@@ -72,6 +73,7 @@ ecommerce/
 * **Java JDK 17** instalado.
 * **Sistema Gerenciador de Banco de Dados (SGBD)** instalado (Ex: MySQL).
 * Uma IDE (Recomendado: **Spring Tool Suite 4** ou **VS Code**) ou terminal.
+
 
 ---
 
